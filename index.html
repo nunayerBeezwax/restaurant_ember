@@ -1,15 +1,65 @@
 <!doctype html>
 <head>
-
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
-  <script type="text/x-handlebars" data-template-name="tables" >
-    <section id="rest-orders-app">
+  <script type="text/x-handlebars" data-template-name="tables">
+    <section id="tables" class="">
+
+      <div id="table-list">
+        {{#each table in controller}}
+            <div class="table">
+            {{table.bill}}
+              <h2 {{action "tableSelect" table on="click" }}>{{table.number}}</h2>
+            </div>
+        {{/each}}
+      </div>
+      <h4>Add a Table</h4>
+      {{input type="text" id="new-table" placeholder="Table Number" value=newTable action="createTable"}}
+
     </section>
+    <br>
+    {{#each}}
+      {{#if selected }}
+        {{ render 'food' }}
+        {{ render 'bill' }}
+      {{/if}}
+    {{/each}}
   </script>
+
+  <script type="text/x-handlebars" data-template-name="food">
+    <div id="menu" class="">
+      {{#each food in controller}}
+        <div class="menu-item">
+          <img {{action "addFood" food on="click"}}  {{bind-attr src="food.pic"}}>
+          <div class="food-name">
+            <p>{{food.name}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+     {{input type="text" id="new-food" placeholder="Food Name" value=newFood action="createFood"}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="bill">
+    <div id="menu" class="">
+      <p> Bill goes here </p>
+      <div {{action "computeBill" table}}> woo </div>
+    </div>
+  </script>
+
   <script src="js/dep/jquery.min.js"></script>
   <script src="js/dep/handlebars.js"></script>
   <script src="js/dep/ember.js"></script>
   <script src="js/dep/ember-data.js"></script>
+
+  <script src="js/application.js"></script>
+  <script src="js/router.js"></script>
+
+  <script src="js/models/table.js"></script>
+  <script src="js/models/food.js"></script>
+  <script src="js/controllers/tables_controller.js"></script>
+  <script src="js/controllers/food_controller.js"></script>
+  <script src="js/controllers/bill_controller.js"></script>
 </body>

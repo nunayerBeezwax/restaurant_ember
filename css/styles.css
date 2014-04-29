@@ -1,0 +1,23 @@
+.table {
+  display: inline-block;
+  background-color: #DDD;
+
+  border-radius: 15px;
+  width: 80px;
+  height: 80px;
+
+  text-align: center;
+}
+
+#menu {
+  display: inline-block;
+  text-align: center;
+}
+
+.menu-item {
+  display: inline-block;
+}
+
+.active {
+  background-color: #0012FF;
+}
